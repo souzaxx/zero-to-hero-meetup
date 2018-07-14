@@ -1,0 +1,8 @@
+{
+	"name": "node-exporter-3",
+	"address": "node-exporter-3",
+	"port": 9100,
+	"Tags": [
+		"Apache"
+	  ]
+}

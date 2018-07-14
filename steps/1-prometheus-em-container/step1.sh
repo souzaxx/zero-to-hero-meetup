@@ -1,0 +1,1 @@
+docker run --rm -v $PWD/prometheus.yml:/etc/prometheus/prometheus.yml -p 9090:9090 prom/prometheus:latest

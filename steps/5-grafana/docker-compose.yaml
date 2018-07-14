@@ -1,0 +1,58 @@
+version: "3.3"
+
+networks:
+  net:
+    driver: overlay
+    attachable: true
+
+volumes:
+    prometheus: {}
+
+configs:
+  prometheus_rules:
+    file: ./prometheus.yml
+  grafana_dashboard:
+    file: ./node-exporter-single-server_rev7.json
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.2.0-rc.0 
+    ports:
+      - "9090:9090"
+    networks:
+      - net
+    configs:
+      - source: prometheus_rules 
+        target: /etc/prometheus/prometheus.yml
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 128M
+
+  grafana:
+    image: souzaxx/meetup-grafana:latest 
+    ports:
+      - "3000:3000"
+    networks:
+      - net
+    configs:
+      - source: grafana_dashboard 
+        target: /etc/grafana/dashboards/node-exporter-single-server_rev7.json
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          memory: 128M
+        reservations:
+          memory: 64M
