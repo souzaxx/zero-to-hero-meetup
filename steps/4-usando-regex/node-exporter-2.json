@@ -1,8 +1,0 @@
-{
-	"name": "node-exporter-2",
-	"address": "node-exporter-2",
-	"port": 9100,
-	"Tags": [
-		"Nginx"
-	  ]
-}
