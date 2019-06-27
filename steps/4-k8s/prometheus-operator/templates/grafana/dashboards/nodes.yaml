@@ -84,28 +84,28 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max(node_load1{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"})",
+                                "expr": "max(node_load1{ job=\"instancias-aws\", instance=\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "load 1m",
                                 "refId": "A"
                             },
                             {
-                                "expr": "max(node_load5{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"})",
+                                "expr": "max(node_load5{ job=\"instancias-aws\", instance=\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "load 5m",
                                 "refId": "B"
                             },
                             {
-                                "expr": "max(node_load15{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"})",
+                                "expr": "max(node_load15{ job=\"instancias-aws\", instance=\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "load 15m",
                                 "refId": "C"
                             },
                             {
-                                "expr": "count(node_cpu_seconds_total{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\", mode=\"user\"})",
+                                "expr": "count(node_cpu_seconds_total{ job=\"instancias-aws\", instance=\"$instance\", mode=\"user\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "logical cores",
@@ -196,7 +196,7 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "sum by (cpu) (irate(node_cpu_seconds_total{cluster=\"$cluster\", job=\"node-exporter\", mode!=\"idle\", instance=\"$instance\"}[5m]))",
+                                "expr": "sum by (cpu) (irate(node_cpu_seconds_total{ job=\"instancias-aws\", mode!=\"idle\", instance=\"$instance\"}[5m]))",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "{{`{{cpu}}`}}",
@@ -300,7 +300,7 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{cluster=\"$cluster\", job=\"node-exporter\", mode!=\"idle\", instance=\"$instance\"}[2m])) ) * 100\n",
+                                "expr": "max (sum by (cpu) (irate(node_cpu_seconds_total{ job=\"instancias-aws\", mode!=\"idle\", instance=\"$instance\"}[2m])) ) * 100\n",
                                 "format": "time_series",
                                 "intervalFactor": 10,
                                 "legendFormat": "{{`{{ cpu }}`}}",
@@ -408,7 +408,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "avg(sum by (cpu) (irate(node_cpu_seconds_total{cluster=\"$cluster\", job=\"node-exporter\", mode!=\"idle\", instance=\"$instance\"}[2m]))) * 100\n",
+                                "expr": "avg(sum by (cpu) (irate(node_cpu_seconds_total{ job=\"instancias-aws\", mode!=\"idle\", instance=\"$instance\"}[2m]))) * 100\n",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -488,28 +488,28 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max(\n  node_memory_MemTotal_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n  - node_memory_MemFree_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n  - node_memory_Buffers_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n  - node_memory_Cached_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n)\n",
+                                "expr": "max(\n  node_memory_MemTotal_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n  - node_memory_MemFree_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n  - node_memory_Buffers_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n  - node_memory_Cached_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n)\n",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "memory used",
                                 "refId": "A"
                             },
                             {
-                                "expr": "max(node_memory_Buffers_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"})",
+                                "expr": "max(node_memory_Buffers_bytes{ job=\"instancias-aws\", instance=\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "memory buffers",
                                 "refId": "B"
                             },
                             {
-                                "expr": "max(node_memory_Cached_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"})",
+                                "expr": "max(node_memory_Cached_bytes{ job=\"instancias-aws\", instance=\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "memory cached",
                                 "refId": "C"
                             },
                             {
-                                "expr": "max(node_memory_MemFree_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"})",
+                                "expr": "max(node_memory_MemFree_bytes{ job=\"instancias-aws\", instance=\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "memory free",
@@ -617,7 +617,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "max(\n  (\n    (\n      node_memory_MemTotal_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n    - node_memory_MemFree_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n    - node_memory_Buffers_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n    - node_memory_Cached_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n    )\n    / node_memory_MemTotal_bytes{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n  ) * 100)\n",
+                                "expr": "max(\n  (\n    (\n      node_memory_MemTotal_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n    - node_memory_MemFree_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n    - node_memory_Buffers_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n    - node_memory_Cached_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n    )\n    / node_memory_MemTotal_bytes{ job=\"instancias-aws\", instance=\"$instance\"}\n  ) * 100)\n",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -704,21 +704,21 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max(rate(node_disk_read_bytes_total{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}[2m]))",
+                                "expr": "max(rate(node_disk_read_bytes_total{ job=\"instancias-aws\", instance=\"$instance\"}[2m]))",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "read",
                                 "refId": "A"
                             },
                             {
-                                "expr": "max(rate(node_disk_written_bytes_total{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}[2m]))",
+                                "expr": "max(rate(node_disk_written_bytes_total{ job=\"instancias-aws\", instance=\"$instance\"}[2m]))",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "written",
                                 "refId": "B"
                             },
                             {
-                                "expr": "max(rate(node_disk_io_time_seconds_total{cluster=\"$cluster\", job=\"node-exporter\",  instance=\"$instance\"}[2m]))",
+                                "expr": "max(rate(node_disk_io_time_seconds_total{ job=\"instancias-aws\",  instance=\"$instance\"}[2m]))",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "io time",
@@ -809,14 +809,14 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max by (namespace, pod, device) ((node_filesystem_size_bytes{cluster=\"$cluster\", fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"node-exporter\"} - node_filesystem_avail_bytes{cluster=\"$cluster\", fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"node-exporter\"}) / node_filesystem_size_bytes{cluster=\"$cluster\", fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"node-exporter\"})",
+                                "expr": "max by (namespace, pod, device) ((node_filesystem_size_bytes{ fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"instancias-aws\"} - node_filesystem_avail_bytes{ fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"instancias-aws\"}) / node_filesystem_size_bytes{ fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"instancias-aws\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "disk used",
                                 "refId": "A"
                             },
                             {
-                                "expr": "max by (namespace, pod, device) (node_filesystem_avail_bytes{cluster=\"$cluster\", fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"node-exporter\"} / node_filesystem_size_bytes{cluster=\"$cluster\", fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"node-exporter\"})",
+                                "expr": "max by (namespace, pod, device) (node_filesystem_avail_bytes{ fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"instancias-aws\"} / node_filesystem_size_bytes{ fstype=~\"ext[234]|btrfs|xfs|zfs\", instance=\"$instance\", job=\"instancias-aws\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "disk free",
@@ -920,7 +920,7 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max(rate(node_network_receive_bytes_total{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\", device!~\"lo\"}[5m]))",
+                                "expr": "max(rate(node_network_receive_bytes_total{ job=\"instancias-aws\", instance=\"$instance\", device!~\"lo\"}[5m]))",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "{{`{{device}}`}}",
@@ -1011,7 +1011,7 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max(rate(node_network_transmit_bytes_total{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\", device!~\"lo\"}[5m]))",
+                                "expr": "max(rate(node_network_transmit_bytes_total{ job=\"instancias-aws\", instance=\"$instance\", device!~\"lo\"}[5m]))",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "{{`{{device}}`}}",
@@ -1115,14 +1115,14 @@ data:
                         "steppedLine": false,
                         "targets": [
                             {
-                                "expr": "max(\n  node_filesystem_files{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n  - node_filesystem_files_free{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n)\n",
+                                "expr": "max(\n  node_filesystem_files{ job=\"instancias-aws\", instance=\"$instance\"}\n  - node_filesystem_files_free{ job=\"instancias-aws\", instance=\"$instance\"}\n)\n",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "inodes used",
                                 "refId": "A"
                             },
                             {
-                                "expr": "max(node_filesystem_files_free{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"})",
+                                "expr": "max(node_filesystem_files_free{ job=\"instancias-aws\", instance=\"$instance\"})",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "inodes free",
@@ -1230,7 +1230,7 @@ data:
                         "tableColumn": "",
                         "targets": [
                             {
-                                "expr": "max(\n  (\n    (\n      node_filesystem_files{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n    - node_filesystem_files_free{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n    )\n    / node_filesystem_files{cluster=\"$cluster\", job=\"node-exporter\", instance=\"$instance\"}\n  ) * 100)\n",
+                                "expr": "max(\n  (\n    (\n      node_filesystem_files{ job=\"instancias-aws\", instance=\"$instance\"}\n    - node_filesystem_files_free{ job=\"instancias-aws\", instance=\"$instance\"}\n    )\n    / node_filesystem_files{ job=\"instancias-aws\", instance=\"$instance\"}\n  ) * 100)\n",
                                 "format": "time_series",
                                 "intervalFactor": 2,
                                 "legendFormat": "",
@@ -1292,32 +1292,6 @@ data:
 
                     },
                     "datasource": "$datasource",
-                    "hide": 2,
-                    "includeAll": false,
-                    "label": "cluster",
-                    "multi": false,
-                    "name": "cluster",
-                    "options": [
-
-                    ],
-                    "query": "label_values(kube_pod_info, cluster)",
-                    "refresh": 2,
-                    "regex": "",
-                    "sort": 0,
-                    "tagValuesQuery": "",
-                    "tags": [
-
-                    ],
-                    "tagsQuery": "",
-                    "type": "query",
-                    "useTags": false
-                },
-                {
-                    "allValue": null,
-                    "current": {
-
-                    },
-                    "datasource": "$datasource",
                     "hide": 0,
                     "includeAll": false,
                     "label": null,
@@ -1326,7 +1300,7 @@ data:
                     "options": [
 
                     ],
-                    "query": "label_values(node_boot_time_seconds{cluster=\"$cluster\", job=\"node-exporter\"}, instance)",
+                    "query": "label_values(node_boot_time_seconds{ job=\"instancias-aws\"}, instance)",
                     "refresh": 2,
                     "regex": "",
                     "sort": 0,
